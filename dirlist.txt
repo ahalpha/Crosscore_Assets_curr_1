@@ -1,1 +1,0 @@
-Custom,sounds,videos,sounds/bgms,sounds/cv,sounds/fight,sounds/plot_effect,sounds/UI,sounds/fight/effect,videos/activity,videos/boss,videos/box,videos/drasoul,videos/login,videos/o20080,videos/other,videos/plot,videos/s50010,videos/s50040,videos/shop,videos/story,videos/u30430

@@ -1,5 +1,5 @@
 # Crosscore_Assets_curr_1
-自动保存交错战线 `curr_1` (国际版本) 官方通道的资源。
+自动获取并更新交错战线 `curr_1` (国际版本) 官方通道的资源 (每小时) 。
 
 ## 提示
 此项目是基于 [**CrossCore-Internationalizer**](https://github.com/AXiX-official/CrossCore-Internationalizer) 的更改。

@@ -6,7 +6,7 @@
 
 01. 将此项目克隆至本地。
 ```
-git clone https://github.com/ahalpha/Crosscore_Anti_Hexie_Assets.git
+git clone -b android https://github.com/ahalpha/Crosscore_Anti_Hexie_Assets.git
 ```
 02. 将整个目录传输至你的 Android 系统的设备或模拟器。
 

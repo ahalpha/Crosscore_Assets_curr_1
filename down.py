@@ -8,7 +8,7 @@ from alive_progress import alive_bar
 # 配置参数
 oslists = {"android", "ios"} # 获取平台
 base_url = f"https://cdn.megagamelog.com/cross/release/_getos_/curr_1/" # 基础链接
-tr = 8 # 线程数
+tr = 4 # 线程数
 logs = False # 记录下载
 
 
@@ -20,7 +20,7 @@ osnum = {}
 
 # 读取文件
 with open("ilist.txt", "r", encoding='utf-8-sig') as file_i:
-    items = file_i.read().split(',')
+    items = file_i.read().split('\n')
 with open("dirlist.txt", "r", encoding='utf-8-sig') as file_d:
     dirs = file_d.read().split(',')
 
@@ -88,7 +88,7 @@ for oslist in oslists:
         with alive_bar(len(items)) as bar:
             bar(0)
             for a in range(len(items)-1):
-                time.sleep(20/len(items))
+                time.sleep(180/len(items))
                 bar()
     suc, fail = [0, 0]
     bar(0)

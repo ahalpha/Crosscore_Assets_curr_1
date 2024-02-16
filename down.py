@@ -6,22 +6,23 @@ import math
 from alive_progress import alive_bar
 
 # 配置参数
-oslists = {"android", "ios"} # 获取平台
-base_url = f"https://cdn.megagamelog.com/cross/release/_getos_/curr_1/" # 基础链接
+oslists = {"android": "curr_1", "ios": "curr_new_1"} # 获取平台
 tr = 4 # 线程数
-logs = False # 记录下载
+dt = 180 # 多平台下载延迟：秒
+logs = False # 记录详细文件下载
 
 
 t = time.strftime('%y-%m-%d-%H-%M-%S', time.localtime())
 suc, fail = [0, 0]
+base_url = ""
 threads = []
 osnum = {}
 
 
 # 读取文件
-with open("ilist.txt", "r", encoding='utf-8-sig') as file_i:
+with open("lists/ilist.txt", "r", encoding='utf-8-sig') as file_i:
     items = file_i.read().split('\n')
-with open("dirlist.txt", "r", encoding='utf-8-sig') as file_d:
+with open("lists/dirlist.txt", "r", encoding='utf-8-sig') as file_d:
     dirs = file_d.read().split(',')
 
 
@@ -31,7 +32,7 @@ if logs:
     os.makedirs(f"logs", exist_ok=True)
 for oslist in oslists:
     for dir in dirs:
-        os.makedirs(f"{oslist}/{dir}", exist_ok=True)
+        os.makedirs(f"files/{oslists[oslist]}/{oslist}/{dir}", exist_ok=True)
 with alive_bar(len(dirs)) as bar:
     bar(len(dirs))
 #os.system('cls')
@@ -45,7 +46,7 @@ def dl_file(url, itemg, getos):
         response = requests.get(url+item)
 
         if str(response) != '<Response [404]>':
-            with open(f"{getos}/{item}", 'wb') as f:
+            with open(f"files/{oslists[getos]}/{getos}/{item}", 'wb') as f:
                 f.write(response.content)
 
             if logs:
@@ -88,12 +89,13 @@ for oslist in oslists:
         with alive_bar(len(items)) as bar:
             bar(0)
             for a in range(len(items)-1):
-                time.sleep(180/len(items))
+                time.sleep(dt/len(items))
                 bar()
     suc, fail = [0, 0]
     bar(0)
     print(f"Download - \"{oslist}\" Assets.")
-    osnum[oslist] = dl_files(oslist)
+    base_url = f"https://cdn.megagamelog.com/cross/release/_getos_/{oslists[oslist]}/"
+    osnum[f"{oslists[oslist]}-{oslist}"] = dl_files(oslist)
     i += 1
     #os.system('cls')
 
@@ -103,7 +105,7 @@ i = 1
 for oslist in oslists:
     if i != 1:
         print(" | ",end="")
-    print(f"\"{oslist}\": {osnum[oslist]}",end="")
+    print(f"\"{oslists[oslist]}-{oslist}\": {osnum[f'{oslists[oslist]}-{oslist}']}",end="")
     i += 1
 print(f"")
 
@@ -117,6 +119,6 @@ if logs_all:
         for oslist in oslists:
             if i != 1:
                 f.write(f" | ")
-            f.write(f"\"{oslist}\": {osnum[oslist]}")
+            f.write(f"\"{oslists[oslist]}-{oslist}\": {osnum[f'{oslists[oslist]}-{oslist}']}")
             i += 1
         f.write(f"\n")

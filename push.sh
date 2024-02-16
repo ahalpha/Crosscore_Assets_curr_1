@@ -1,11 +1,13 @@
 python down.py
 
-cd android
+cd files/curr_1/android
 git add .
 git commit -m "File changes."
 git push
+cd ../../../
 
-cd ../ios
+cd files/curr_new_1/ios
 git add .
 git commit -m "File changes."
 git push
+cd ../../../

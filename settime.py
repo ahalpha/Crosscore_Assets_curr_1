@@ -2,7 +2,8 @@ import os
 import time
 from alive_progress import alive_bar
 
-t = 300000
+dt = 1500 # 循环延迟：秒
+t = 300000 # 进度条梯度
 
 i = 1
 while True:
@@ -11,6 +12,6 @@ while True:
     with alive_bar(t) as bar:
         bar(0)
         for a in range(t-1):
-            time.sleep(1500/t)
+            time.sleep(dt/t)
             bar()
     i += 1

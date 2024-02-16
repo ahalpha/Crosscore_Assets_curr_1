@@ -1,4 +1,0 @@
-Custom/AssetBundles
-Custom/luascripts
-Custom/shader
-Custom/shader_base
